@@ -1,0 +1,145 @@
+;; sa-sidham-hk.mim -- Sanskrit Siddham input method with Harvard-Kyoto convention
+
+
+(input-method sa Siddham-hk)
+
+(description "Sanskrit Siddham input method with Harvard-Kyoto convention.
+The table is based on 
+  <http://en.wikipedia.org/wiki/Harvard-Kyoto>
+")
+
+(title "𑖎")
+
+(map
+ (starter
+  ((S-\ )) ((C-@))
+  ("0") ("1") ("2") ("3") ("4") ("5") ("6") ("7") ("8") ("9")
+  ("A") ("D") ("G") ("H") ("I") ("J")
+  ("M") ("N") ("O") ("R") ("S") ("T") ("U")
+  ("a") ("b") ("c") ("d") ("e") ("g") ("h") ("i")
+  ("j") ("k") ("l") ("m") ("n") ("o") ("p") ("r")
+  ("s") ("t") ("u") ("v") ("y") ("z") (".") ("|") ("!")
+  ((KP_1)) ((KP_2)) ((KP_3)) ((KP_4)) ((KP_5))
+  ((KP_6)) ((KP_7)) ((KP_8)) ((KP_9)) ((KP_0)))
+
+ (consonant
+  ("k" "𑖎𑖿")
+  ("kh" "𑖏𑖿")
+  ("g" "𑖐𑖿")
+  ("gh" "𑖑𑖿")
+  ("G" "𑖒𑖿")
+  ("c" "𑖓𑖿")
+  ("ch" "𑖔𑖿")
+  ("j" "𑖕𑖿")
+  ("jh" "𑖖𑖿")
+  ("J" "𑖗𑖿")
+  ("T" "𑖘𑖿")
+  ("Th" "𑖙𑖿")
+  ("D" "𑖚𑖿")
+  ("Dh" "𑖛𑖿")
+  ("N" "𑖜𑖿")
+  ("t" "𑖝𑖿")
+  ("th" "𑖞𑖿")
+  ("d" "𑖟𑖿")
+  ("dh" "𑖠𑖿")
+  ("n" "𑖡𑖿")
+  ("p" "𑖢𑖿")
+  ("ph" "𑖣𑖿")
+  ("b" "𑖤𑖿")
+  ("bh" "𑖥𑖿")
+  ("m" "𑖦𑖿")
+  ("y" "𑖧𑖿")
+  ("r" "𑖨𑖿")
+  ("l" "𑖩𑖿")
+  ("v" "𑖪𑖿")
+  ("z" "𑖫𑖿")
+  ("S" "𑖬𑖿")
+  ("s" "𑖭𑖿")
+  ("h" "𑖮𑖿"))
+
+ (independent
+  ("M" "𑖽")
+  ("H" "𑖾")
+  ("a" "𑖀")
+  ("A" "𑖁")
+  ("i" "𑗙")
+  ("I" "𑖃")
+  ("u" "𑗛")
+  ("U" "𑖅")
+  ("R" "𑖆")
+  ("lR" "𑖈")
+  ("e" "𑖊")
+  ("ai" "𑖋")
+  ("o" "𑖌")
+  ("au" "𑖍")
+  ("RR" "𑖇")
+  ("lRR" "𑖉")
+  (".a" "𑗄")
+  ("|" "𑗂")
+  ("!"  "𑗃")
+  ("OM" "𑖌𑖼")
+  ("0" "0")
+  ("1" "1")
+  ("2" "2")
+  ("3" "3")
+  ("4" "4")
+  ("5" "5")
+  ("6" "6")
+  ("7" "7")
+  ("8" "8")
+  ("9" "9")
+  ((KP_0) "0")
+  ((KP_1) "1")
+  ((KP_2) "2")
+  ((KP_3) "3")
+  ((KP_4) "4")
+  ((KP_5) "5")
+  ((KP_6) "6")
+  ((KP_7) "7")
+  ((KP_8) "8")
+  ((KP_9) "9")
+  ((S-\ ) "")
+  ((C-@) ""))
+
+ (dependent
+  ("a" (delete @-) "")
+  ("A" (delete @-) "𑖯")
+  ("i" (delete @-) "𑖰")
+  ("I" (delete @-) "𑖱")
+  ("u" (delete @-) "𑖲")
+  ("U" (delete @-) "𑗝")
+  ("R" (delete @-) "𑖴")
+  ("RR" (delete @-) "𑖵")
+  ("e" (delete @-) "𑖸")
+  ("ai" (delete @-) "𑖹")
+  ("o" (delete @-) "𑖺")
+  ("au" (delete @-) "𑖻")
+  ("lR" (delete @-) "𑖿𑖩𑖰")
+  ("lRR" (delete @-) "𑖿𑖩𑖱"))
+
+ (return
+  ((Return)))
+
+ (backspace
+  ((BackSpace) (undo))))
+
+(state
+ (init
+  (starter (pushback 1) (shift intermediate)))
+
+ (intermediate
+  (consonant (shift second))
+  (independent (shift init))
+  (backspace)
+  (return (shift init)))
+
+ (second
+  (consonant)
+  (dependent (shift init))
+  (backspace)
+  (return (shift init))))
+
+;; Local Variables:
+;; coding: utf-8
+;; mode: emacs-lisp
+;; End:
