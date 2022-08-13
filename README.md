@@ -1,7 +1,7 @@
 # Siddham-m17n
 An m17n keyboard mapping for Siddham typing on Linux
 
-It follows the havard-kyoto convention
+It follows the [havard-kyoto convention](https://en.wikipedia.org/wiki/Harvard-Kyoto).
 
 
 ## Requirements
@@ -16,6 +16,8 @@ It follows the havard-kyoto convention
 
    1. create a directory .m17n.d in $HOME
    2. put this file and restart the m17n engine for it to show up.
+   3. If it doesn't then, install the correct m17n package available in the distro.
+   4. choose the keyboard, switch to it and enjoy typing.
    
    
 
